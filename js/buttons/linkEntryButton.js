@@ -12,6 +12,11 @@ class LinkEntryButton {
     #pressed;
 
     /**
+     * @type {function}
+     */
+    #middleClicked;
+
+    /**
      * @param {LinkEntry} linkEntry 
      * @param {HTMLElement} domContainer the DOM container to append the button to
      */
@@ -32,9 +37,25 @@ class LinkEntryButton {
         return this;
     }
 
-    #clicked() {
+    whenMiddleClicked(callback) {
+        this.#middleClicked = callback;
+
+        return this;
+    }
+
+    #clicked(event) {
         if (this.#pressed) {
-            this.#pressed(this);
+            this.#pressed(this, event);
+        }
+    }
+
+    #checkForMiddleClick(event) {
+        if (!this.#middleClicked) {
+            return;
+        }
+
+        if (event.button === 4 || event.which === 2) {
+            this.#middleClicked(this, event);
         }
     }
 
@@ -53,7 +74,8 @@ class LinkEntryButton {
         button.appendChild(shortcutSpan);
         button.appendChild(titleSpan);
 
-        button.addEventListener("click", () => this.#clicked());
+        button.addEventListener("click", (event) => this.#clicked(event));
+        button.addEventListener("mousedown", (event) => this.#checkForMiddleClick(event));
 
         domContainer.appendChild(button);
 
