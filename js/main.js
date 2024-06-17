@@ -2,7 +2,8 @@ var Services = {
     links: new LinkEntryService(),
     routing: new LinkRoutingService(),
     buttons: new LinkEntryButtonService(),
-    ui: new UserInterfaceService()
+    ui: new UserInterfaceService(),
+    keybindings: new LinkEntryKeybindingService()
 }
 
 function init() {
