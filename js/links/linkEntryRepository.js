@@ -112,7 +112,7 @@ class LinkEntryRepository {
     #fillCognitromLinks() {
         this.entries[LinkCategories.COGNITROM] = [];
 
-        this.add(new LinkEntry(["c", "o", "g"], "Drive Home", "https://drive.google.com/u/1/my-drive", LinkCategories.COGNITROM));
+        this.add(new LinkEntry(["c", "o", "g"], "Drive Home", "https://drive.google.com/u/1", LinkCategories.COGNITROM));
     }
 
     #fillSapientiaSalomonisLinks() {
