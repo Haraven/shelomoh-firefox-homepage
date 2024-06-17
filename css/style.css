@@ -1,0 +1,83 @@
+body {
+    font-family: Ubuntu, "UbuntuMono Nerd Font";
+    text-align: center;
+    background-color: #1E1D1C;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #424242;
+}
+
+h2 {
+    text-align: left;
+}
+
+.small-separator {
+    width: 7%;
+    color: #282828;
+}
+
+.links-table {
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.links-column {
+    flex: 1;
+}
+
+.links-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left {
+    padding-right: 10px;
+}
+
+.link-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+}
+
+.link-entry {
+    display: flex;
+    align-items: center;
+    width: 230px;
+    height: 30px;
+    background-color: #282828;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px 10px 20px;
+    color: #fff;
+    text-align: left;
+}
+
+.link-entry:hover {
+    cursor: pointer;
+    background-color: #323232;
+}
+
+.link-entry:active {
+    background-color: #1E1D1C;
+}
+
+.link-entry:focus {
+    outline: 1px solid #fff;
+}
+
+.link-entry-shortcut {
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 0.5em;
+}
+
+.link-entry-title {
+    font-size: 1em;
+    color: #837567;
+}
