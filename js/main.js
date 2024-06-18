@@ -7,6 +7,7 @@ var Services = {
 }
 
 function init() {
+    Services.keybindings.ignoreKey("shift");
     let allLinks = Services.links.getAll();
 
     for (let link of allLinks) {

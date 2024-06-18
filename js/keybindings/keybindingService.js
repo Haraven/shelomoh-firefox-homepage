@@ -70,7 +70,15 @@ class LinkEntryKeybindingService {
      */
     #onLinkEntryActivated;
 
+    /**
+     * The keys to ignore when detecting key sequences
+     * @private
+     * @type {string[]}
+     */
+    #ignoredKeys;
+
     constructor() {
+        this.#ignoredKeys = [];
         /**
          * @type {LinkEntryKeybinding[]}
          */
@@ -96,18 +104,18 @@ class LinkEntryKeybindingService {
     }
 
     #ensureCurrentlyPressedKeySequenceFitsMaxSequenceLength() {
-        let numberOfModifiersInSequence = this.#getSequenceModifiers(this.#currentlyPressedKeys).length;
-        if (this.#currentlyPressedKeys.length > this.#maxKeySequenceLength + numberOfModifiersInSequence) {
+        let numberOfIgnoredKeysInSequence = this.#getSequenceIgnoredKeys(this.#currentlyPressedKeys).length;
+        if (this.#currentlyPressedKeys.length > this.#maxKeySequenceLength + numberOfIgnoredKeysInSequence) {
             this.#currentlyPressedKeys.shift();
         }
     }
 
-    #getSequenceWithoutModifiers(keySequence) {
-        return keySequence.filter(key => key !== "shift" && key !== "control" && key !== "alt" && key !== "meta");
+    #getSequenceWithoutIgnoredKeys(keySequence) {
+        return keySequence.filter(key => !this.#ignoredKeys.includes(key));
     }
 
-    #getSequenceModifiers(keySequence) {
-        return keySequence.filter(key => key === "shift" || key === "control" || key === "alt" || key === "meta");
+    #getSequenceIgnoredKeys(keySequence) {
+        return keySequence.filter(key => this.#ignoredKeys.includes(key));
     }
 
     #startKeyPressResetTimeout() {
@@ -161,7 +169,7 @@ class LinkEntryKeybindingService {
      * @returns {LinkEntryKeybinding} - The keybinding associated with the key sequence, or null if no keybinding is found
      */
     #getKeybindingForSequence(keySequence) {
-        keySequence = this.#getSequenceWithoutModifiers(keySequence);
+        keySequence = this.#getSequenceWithoutIgnoredKeys(keySequence);
         for (let registeredKeybinding of this.registeredKeybindings) {
             if (keySequence.length !== registeredKeybinding.linkEntry.shortcutSequence.length) {
                 continue;
@@ -190,6 +198,16 @@ class LinkEntryKeybindingService {
             }
         }
         return true;
+    }
+
+    /**
+     * @param {string} key - The key to ignore
+     */
+    ignoreKey(key) {
+        key = key.toLowerCase();
+        if (!this.#ignoredKeys.includes(key)) {
+            this.#ignoredKeys.push(key);
+        }
     }
 
     /**
