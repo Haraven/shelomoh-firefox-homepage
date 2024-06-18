@@ -85,7 +85,8 @@ class LinkEntryRepository {
         this.add(new LinkEntry(["u"], "Unix Porn", "https://www.reddit.com/r/UnixPorn/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["o"], "OpenSUSE", "https://www.reddit.com/r/OpenSUSE/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["p"], "Pop!_OS", "https://www.reddit.com/r/Pop_OS/", LinkCategories.REDDIT));
-        this.add(new LinkEntry(["k"], "KDE", "https://www.reddit.com/r/KDE/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["k", "d", "e"], "KDE", "https://www.reddit.com/r/KDE/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["s", "d"], "Steam Deck", "https://www.reddit.com/r/SteamDeck/", LinkCategories.REDDIT));
     }
 
     #fillYoutubeLinks() {
