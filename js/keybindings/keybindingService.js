@@ -84,7 +84,7 @@ class LinkEntryKeybindingService {
     }
 
     #onKeyDown(event) {
-        this.#currentlyPressedKeys.push(event.key);
+        this.#currentlyPressedKeys.push(event.key.toLowerCase());
         this.#ensureCurrentlyPressedKeySequenceFitsMaxSequenceLength();
 
         if (this.#onKeyPressed) {
@@ -96,9 +96,18 @@ class LinkEntryKeybindingService {
     }
 
     #ensureCurrentlyPressedKeySequenceFitsMaxSequenceLength() {
-        if (this.#currentlyPressedKeys.length > this.#maxKeySequenceLength) {
+        let numberOfModifiersInSequence = this.#getSequenceModifiers(this.#currentlyPressedKeys).length;
+        if (this.#currentlyPressedKeys.length > this.#maxKeySequenceLength + numberOfModifiersInSequence) {
             this.#currentlyPressedKeys.shift();
         }
+    }
+
+    #getSequenceWithoutModifiers(keySequence) {
+        return keySequence.filter(key => key !== "shift" && key !== "control" && key !== "alt" && key !== "meta");
+    }
+
+    #getSequenceModifiers(keySequence) {
+        return keySequence.filter(key => key === "shift" || key === "control" || key === "alt" || key === "meta");
     }
 
     #startKeyPressResetTimeout() {
@@ -108,7 +117,6 @@ class LinkEntryKeybindingService {
                 this.#activateKeybinding(keybindingAssociatedWithKeySequence);
             }
 
-            console.log(this.#currentlyPressedKeys);
             this.#resetCurrentKeySequence();
             this.#keyPressTimeoutHandler = null;
         }, this.#keyPressTimeoutMs);
@@ -137,9 +145,9 @@ class LinkEntryKeybindingService {
      */
     #activateKeybinding(keybindingAssociatedWithKeySequence) {
         try {
-            keybindingAssociatedWithKeySequence.callback(keybindingAssociatedWithKeySequence.linkEntry);
+            keybindingAssociatedWithKeySequence.callback(keybindingAssociatedWithKeySequence.linkEntry, this.#currentlyPressedKeys);
             if (this.#onLinkEntryActivated) {
-                this.#onLinkEntryActivated(keybindingAssociatedWithKeySequence.linkEntry);
+                this.#onLinkEntryActivated(keybindingAssociatedWithKeySequence.linkEntry, this.#currentlyPressedKeys);
             }
         }
         catch (error) {
@@ -153,6 +161,7 @@ class LinkEntryKeybindingService {
      * @returns {LinkEntryKeybinding} - The keybinding associated with the key sequence, or null if no keybinding is found
      */
     #getKeybindingForSequence(keySequence) {
+        keySequence = this.#getSequenceWithoutModifiers(keySequence);
         for (let registeredKeybinding of this.registeredKeybindings) {
             if (keySequence.length !== registeredKeybinding.linkEntry.shortcutSequence.length) {
                 continue;
@@ -196,7 +205,7 @@ class LinkEntryKeybindingService {
     }
 
     /**
-     * Sets the callback to invoke when a keybinding is activated. Invokes with the key sequence that was activated
+     * Sets the callback to invoke when a keybinding is activated. Invokes with the key sequence that was activated, as well as any active modifier keys
      * @param {function} callback - The callback to invoke when a keybinding is activated
      * @returns {LinkEntryKeybindingService} - this instance
      */

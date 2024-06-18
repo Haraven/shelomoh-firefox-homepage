@@ -31,8 +31,12 @@ document.addEventListener('DOMContentLoaded', init);
  * 
  * @param {LinkEntry} linkEntry
  */
-function onKeyboardShortcutActivated(linkEntry) {
-    Services.routing.openInBackgroundTab(linkEntry.url);
+function onKeyboardShortcutActivated(linkEntry, pressedKeySequence) {
+    if (pressedKeySequence.includes("shift")) {
+        Services.routing.openInBackgroundTab(linkEntry.url);
+    } else {
+        Services.routing.replaceTab(linkEntry.url);
+    }
 }
 
 function onLinkMiddleClicked(button, _) {
