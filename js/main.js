@@ -17,6 +17,7 @@ function init() {
             button.whenPressed(onLinkPressed)
                 .whenMiddleClicked(onLinkMiddleClicked);
             Services.buttons.add(button);
+            Services.keybindings.add(link, onKeyboardShortcutActivated);
         } catch (error) {
             console.error(`Error adding link ${link.url} to the user interface: ${error}`);
             console.log(link.category);
@@ -25,6 +26,14 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+/**
+ * 
+ * @param {LinkEntry} linkEntry
+ */
+function onKeyboardShortcutActivated(linkEntry) {
+    Services.routing.openInBackgroundTab(linkEntry.url);
+}
 
 function onLinkMiddleClicked(button, _) {
     Services.routing.openInBackgroundTab(button.linkEntry.url);

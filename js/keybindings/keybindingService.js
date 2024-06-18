@@ -32,7 +32,7 @@ class LinkEntryKeybindingService {
      * @private
      * @type {number}
      */
-    #keyPressTimeoutMs = 500;
+    #keyPressTimeoutMs = 250;
 
     /**
      * The sequence of keys that have been pressed in the allowed time interval
@@ -71,7 +71,13 @@ class LinkEntryKeybindingService {
     #onLinkEntryActivated;
 
     constructor() {
+        /**
+         * @type {LinkEntryKeybinding[]}
+         */
         this.registeredKeybindings = [];
+        /**
+         * @type {string[]}
+         */
         this.#currentlyPressedKeys = [];
 
         document.addEventListener('keydown', (event) => this.#onKeyDown(event));
@@ -85,17 +91,7 @@ class LinkEntryKeybindingService {
             this.#onKeyPressed(this.#currentlyPressedKeys);
         }
 
-        let keybindingAssociatedWithKeySequence = this.#getKeybindingForSequence(this.#currentlyPressedKeys);
-        if (keybindingAssociatedWithKeySequence) {
-            this.#activateKeybinding(keybindingAssociatedWithKeySequence);
-            this.#resetKeyPressTimeout();
-            this.#resetCurrentKeySequence();
-
-            return;
-        }
-
         this.#resetKeyPressTimeout();
-
         this.#startKeyPressResetTimeout();
     }
 
@@ -107,7 +103,14 @@ class LinkEntryKeybindingService {
 
     #startKeyPressResetTimeout() {
         this.#keyPressTimeoutHandler = setTimeout(() => {
+            let keybindingAssociatedWithKeySequence = this.#getKeybindingForSequence(this.#currentlyPressedKeys);
+            if (keybindingAssociatedWithKeySequence) {
+                this.#activateKeybinding(keybindingAssociatedWithKeySequence);
+            }
+
+            console.log(this.#currentlyPressedKeys);
             this.#resetCurrentKeySequence();
+            this.#keyPressTimeoutHandler = null;
         }, this.#keyPressTimeoutMs);
     }
 
@@ -128,15 +131,19 @@ class LinkEntryKeybindingService {
         this.#keyPressTimeoutHandler = null;
     }
 
+    /**
+     * 
+     * @param {LinkEntryKeybinding} keybindingAssociatedWithKeySequence 
+     */
     #activateKeybinding(keybindingAssociatedWithKeySequence) {
         try {
-            keybindingAssociatedWithKeySequence.callback();
+            keybindingAssociatedWithKeySequence.callback(keybindingAssociatedWithKeySequence.linkEntry);
             if (this.#onLinkEntryActivated) {
                 this.#onLinkEntryActivated(keybindingAssociatedWithKeySequence.linkEntry);
             }
         }
         catch (error) {
-            console.error(`Error invoking keybinding callback for ${keybindingAssociatedWithKeySequence.linkEntry.name}: ${error}`);
+            console.error(`Error invoking keybinding callback for ${keybindingAssociatedWithKeySequence.linkEntry.title}: ${error}`);
         }
     }
 
@@ -147,7 +154,7 @@ class LinkEntryKeybindingService {
      */
     #getKeybindingForSequence(keySequence) {
         for (let registeredKeybinding of this.registeredKeybindings) {
-            if (keySequence.length !== registeredKeybinding.linkEntry.keySequence.length) {
+            if (keySequence.length !== registeredKeybinding.linkEntry.shortcutSequence.length) {
                 continue;
             }
 
@@ -161,9 +168,15 @@ class LinkEntryKeybindingService {
         return null;
     }
 
+    /**
+     * 
+     * @param {string[]} keySequence 
+     * @param {LinkEntryKeybinding} registeredKeybinding 
+     * @returns 
+     */
     #checkIfKeySequenceMatchesKeybinding(keySequence, registeredKeybinding) {
         for (let i = 0; i < keySequence.length; i++) {
-            if (keySequence[i] !== registeredKeybinding.linkEntry.keySequence[i]) {
+            if (keySequence[i] !== registeredKeybinding.linkEntry.shortcutSequence[i]) {
                 return false;
             }
         }
@@ -205,10 +218,13 @@ class LinkEntryKeybindingService {
     }
 
     /**
-     * @param {LinkEntry[]} linkEntry - The link entry to bind
+     * @param {LinkEntry} linkEntry - The link entry to bind
      * @param {function} callback - The callback to invoke when the key sequence for the entry is pressed
      */
-    addKeybinding(linkEntry, callback) {
+    add(linkEntry, callback) {
         this.registeredKeybindings.push(new LinkEntryKeybinding(linkEntry, callback));
+        if (this.#maxKeySequenceLength < linkEntry.shortcutSequence.length) {
+            this.#maxKeySequenceLength = linkEntry.shortcutSequence.length;
+        }
     }
 }
