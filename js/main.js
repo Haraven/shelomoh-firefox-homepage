@@ -7,7 +7,6 @@ var Services = {
 }
 
 function init() {
-    Services.keybindings.ignoreKey("shift");
     let allLinks = Services.links.getAll();
 
     for (let link of allLinks) {
@@ -33,6 +32,7 @@ document.addEventListener('DOMContentLoaded', init);
  * @param {LinkEntry} linkEntry
  */
 function onKeyboardShortcutActivated(linkEntry, pressedKeySequence) {
+    console.log(pressedKeySequence);
     if (pressedKeySequence.includes("shift")) {
         Services.routing.openInBackgroundTab(linkEntry.url);
     } else {

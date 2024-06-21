@@ -19,6 +19,13 @@ class LinkEntryKeybinding {
  * @property {Keybinding[]} registeredKeybindings - The list of registered keybindings
  */
 class LinkEntryKeybindingService {
+    #MODIFIERS = ['control', 'meta', 'shift', 'alt', 'command'];
+
+    /**
+     * @type {LinkEntryKeybinding[]}
+     */
+    registeredKeybindings;
+
     /**
      * The maximum length of a key sequence to match
      * @private
@@ -35,11 +42,18 @@ class LinkEntryKeybindingService {
     #keyPressTimeoutMs = 250;
 
     /**
-     * The sequence of keys that have been pressed in the allowed time interval
+     * The sequence of keys that have been pressed in the allowed time interval (without modifiers)
      * @private
      * @type {string[]}
      */
     #currentlyPressedKeys;
+
+    /**
+     * The sequence of modifiers that have been pressed
+     * @private
+     * @type {string[]}
+     */
+    #currentlyPressedModifiers;
 
     /**
      * The timeout handler for the key press timeout
@@ -79,20 +93,30 @@ class LinkEntryKeybindingService {
 
     constructor() {
         this.#ignoredKeys = [];
-        /**
-         * @type {LinkEntryKeybinding[]}
-         */
+
         this.registeredKeybindings = [];
-        /**
-         * @type {string[]}
-         */
         this.#currentlyPressedKeys = [];
 
+        this.#currentlyPressedModifiers = [];
+
         document.addEventListener('keydown', (event) => this.#onKeyDown(event));
+        document.addEventListener('keyup', (event) => this.#onKeyUp(event));
     }
 
+    /**
+     * @param {KeyboardEvent} event 
+     */
     #onKeyDown(event) {
-        this.#currentlyPressedKeys.push(event.key.toLowerCase());
+        let key = event.key.toLowerCase();
+        if (this.#isModifier(key)) {
+            if (!this.#currentlyPressedModifiers.includes(key)) {
+                this.#currentlyPressedModifiers.push(key);
+            }
+        }
+        else {
+            this.#currentlyPressedKeys.push(key);
+        }
+        console.log(this.#currentlyPressedKeys, this.#currentlyPressedModifiers);
         this.#ensureCurrentlyPressedKeySequenceFitsMaxSequenceLength();
 
         if (this.#onKeyPressed) {
@@ -101,6 +125,24 @@ class LinkEntryKeybindingService {
 
         this.#resetKeyPressTimeout();
         this.#startKeyPressResetTimeout();
+    }
+
+    /**
+     * @param {KeyboardEvent} event 
+     */
+    #onKeyUp(event) {
+        let key = event.key.toLowerCase();
+        if (this.#isModifier(key)) {
+            this.#currentlyPressedModifiers.splice(this.#currentlyPressedModifiers.indexOf(key), 1);
+        }
+    }
+
+    /**
+     * @param {string} key 
+     * @returns {boolean}
+     */
+    #isModifier(key) {
+        return this.#MODIFIERS.includes(key);
     }
 
     #ensureCurrentlyPressedKeySequenceFitsMaxSequenceLength() {
@@ -153,9 +195,10 @@ class LinkEntryKeybindingService {
      */
     #activateKeybinding(keybindingAssociatedWithKeySequence) {
         try {
-            keybindingAssociatedWithKeySequence.callback(keybindingAssociatedWithKeySequence.linkEntry, this.#currentlyPressedKeys);
+            let keySequenceWithModifiers = this.#currentlyPressedModifiers.concat(this.#currentlyPressedKeys);
+            keybindingAssociatedWithKeySequence.callback(keybindingAssociatedWithKeySequence.linkEntry, keySequenceWithModifiers);
             if (this.#onLinkEntryActivated) {
-                this.#onLinkEntryActivated(keybindingAssociatedWithKeySequence.linkEntry, this.#currentlyPressedKeys);
+                this.#onLinkEntryActivated(keybindingAssociatedWithKeySequence.linkEntry, keySequenceWithModifiers);
             }
         }
         catch (error) {
