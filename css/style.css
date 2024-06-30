@@ -195,7 +195,7 @@
 }
 
 body {
-    font-family: 'Aptos', "Aptos Mono";
+    font-family: 'Aptos', sans-serif;
     text-align: center;
     background-color: #1E1D1C;
     margin: 0;
