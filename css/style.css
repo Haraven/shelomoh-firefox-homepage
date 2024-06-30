@@ -207,7 +207,9 @@ h1 {
 }
 
 h2 {
+    color: #353430;
     text-align: left;
+    margin-bottom: 4px;
 }
 
 .small-separator {
