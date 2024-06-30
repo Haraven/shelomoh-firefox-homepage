@@ -116,7 +116,6 @@ class LinkEntryKeybindingService {
         else {
             this.#currentlyPressedKeys.push(key);
         }
-        console.log(this.#currentlyPressedKeys, this.#currentlyPressedModifiers);
         this.#ensureCurrentlyPressedKeySequenceFitsMaxSequenceLength();
 
         if (this.#onKeyPressed) {

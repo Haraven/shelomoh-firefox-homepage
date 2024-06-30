@@ -20,7 +20,6 @@ function init() {
             Services.keybindings.add(link, onKeyboardShortcutActivated);
         } catch (error) {
             console.error(`Error adding link ${link.url} to the user interface: ${error}`);
-            console.log(link.category);
         }
     }
 }
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', init);
  * @param {LinkEntry} linkEntry
  */
 function onKeyboardShortcutActivated(linkEntry, pressedKeySequence) {
-    console.log(pressedKeySequence);
     if (pressedKeySequence.includes("shift")) {
         Services.routing.openInBackgroundTab(linkEntry.url);
     } else {
