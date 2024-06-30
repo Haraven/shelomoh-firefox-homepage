@@ -62,23 +62,27 @@ class LinkEntryButton {
     #createDomElement(domContainer) {
         let button = document.createElement("button");
         button.classList.add("link-entry");
-
+    
         let shortcutSpan = document.createElement("span");
         shortcutSpan.classList.add("link-entry-shortcut");
         shortcutSpan.textContent = this.linkEntry.shortcutSequence.join("+");
-
+    
         let titleSpan = document.createElement("span");
         titleSpan.classList.add("link-entry-title");
         titleSpan.textContent = this.linkEntry.title;
-
-        button.appendChild(shortcutSpan);
-        button.appendChild(titleSpan);
-
+    
+        let container = document.createElement("div");
+        container.classList.add("link-entry-container");
+        container.appendChild(shortcutSpan);
+        container.appendChild(titleSpan);
+    
+        button.appendChild(container);
+    
         button.addEventListener("click", (event) => this.#clicked(event));
         button.addEventListener("mousedown", (event) => this.#checkForMiddleClick(event));
-
+    
         domContainer.appendChild(button);
-
+    
         return button;
     }
 }

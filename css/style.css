@@ -245,12 +245,12 @@ h2 {
 .link-entry {
     display: flex;
     align-items: center;
-    width: 230px;
+    width: 220px;
     height: 30px;
     background-color: #282828;
+    padding: 0;
     border: none;
     border-radius: 6px;
-    padding: 10px;
     color: #fff;
     text-align: left;
 }
@@ -268,10 +268,20 @@ h2 {
     outline: 1px solid #fff;
 }
 
+.link-entry-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .link-entry-shortcut {
     font-size: 1em;
     font-weight: bold;
     color: #fff;
+    width: 50px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
 }
 
 .link-entry-shortcut::after {
@@ -280,12 +290,16 @@ h2 {
     width: 1px;
     height: 1.5em;
     background-color: #ffffff49;
-    margin-left: 10px;
-    margin-right: 12px;
-    vertical-align: middle;
+    position: absolute; /* Position absolute to align it to the end */
+    right: 0; /* Align to the end of the span */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
 }
 
 .link-entry-title {
     font-size: 1em;
     color: #837567;
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 10px;
 }

@@ -39,7 +39,7 @@ class LinkEntryKeybindingService {
      * @private
      * @type {number}
      */
-    #keyPressTimeoutMs = 250;
+    #keyPressTimeoutMs = 300;
 
     /**
      * The sequence of keys that have been pressed in the allowed time interval (without modifiers)
