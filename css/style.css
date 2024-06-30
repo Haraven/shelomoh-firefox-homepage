@@ -1,5 +1,201 @@
+@font-face {
+    font-family: 'Aptos Black Italic';
+    src: url('../fonts/aptos-black-italic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Black';
+    src: url('../fonts/aptos-black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Bold Italic';
+    src: url('../fonts/aptos-bold-italic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Bold';
+    src: url('../fonts/aptos-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Display Bold Italic';
+    src: url('../fonts/aptos-display-bold-italic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Display Bold';
+    src: url('../fonts/aptos-display-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Display Italic';
+    src: url('../fonts/aptos-display-italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Display';
+    src: url('../fonts/aptos-display.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos ExtraBold Italic';
+    src: url('../fonts/aptos-extrabold-italic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos ExtraBold';
+    src: url('../fonts/aptos-extrabold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Italic';
+    src: url('../fonts/aptos-italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Light Italic';
+    src: url('../fonts/aptos-light-italic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Light';
+    src: url('../fonts/aptos-light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Mono Bold Italic';
+    src: url('../fonts/aptos-mono-bold-italic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Mono Bold';
+    src: url('../fonts/aptos-mono-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Mono Italic';
+    src: url('../fonts/aptos-mono-italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Mono';
+    src: url('../fonts/aptos-mono.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Narrow Bold Italic';
+    src: url('../fonts/aptos-narrow-bold-italic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Narrow Bold';
+    src: url('../fonts/aptos-narrow-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Narrow Italic';
+    src: url('../fonts/aptos-narrow-italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Narrow';
+    src: url('../fonts/aptos-narrow.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Semibold Italic';
+    src: url('../fonts/aptos-semibold-italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Semibold';
+    src: url('../fonts/aptos-semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Serif Bold Italic';
+    src: url('../fonts/aptos-serif-bold-italic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Serif Bold';
+    src: url('../fonts/aptos-serif-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos Serif Italic';
+    src: url('../fonts/aptos-serif-italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Aptos Serif';
+    src: url('../fonts/aptos-serif.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aptos';
+    src: url('../fonts/aptos.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
-    font-family: Ubuntu, "UbuntuMono Nerd Font";
+    font-family: 'Aptos', "Aptos Mono";
     text-align: center;
     background-color: #1E1D1C;
     margin: 0;
