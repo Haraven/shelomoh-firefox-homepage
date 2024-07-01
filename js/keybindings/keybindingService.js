@@ -107,6 +107,13 @@ class LinkEntryKeybindingService {
      * @param {KeyboardEvent} event 
      */
     #onKeyDown(event) {
+        if (event.ctrlKey) {
+            if (!this.#currentlyPressedModifiers.includes('control')) {
+                this.#currentlyPressedModifiers.push('control');
+            }
+            
+            return;
+        }
         let key = event.key.toLowerCase();
         if (this.#isModifier(key)) {
             if (!this.#currentlyPressedModifiers.includes(key)) {
