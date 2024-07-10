@@ -197,17 +197,17 @@
 body {
     font-family: 'Aptos', sans-serif;
     text-align: center;
-    background-color: #1E1D1C;
+    background-color: #1d1d1f;
     margin: 0;
     padding: 20px;
 }
 
 h1 {
-    color: #424242;
+    color: #837567;
 }
 
 h2 {
-    color: #353430;
+    color: #837567;
     text-align: left;
     margin-bottom: 4px;
 }
@@ -261,11 +261,11 @@ h2 {
 }
 
 .link-entry:active {
-    background-color: #1E1D1C;
+    background-color: #1d1d1f;
 }
 
 .link-entry:focus {
-    outline: 1px solid #fff;
+    outline: 1px solid #cdcdcd;
 }
 
 .link-entry-container {
@@ -277,7 +277,7 @@ h2 {
 .link-entry-shortcut {
     font-size: 1em;
     font-weight: bold;
-    color: #fff;
+    color: #fe8019;
     width: 50px;
     text-align: center;
     position: relative;
