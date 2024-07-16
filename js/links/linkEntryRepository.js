@@ -79,7 +79,8 @@ class LinkEntryRepository {
         this.entries[LinkCategories.REDDIT] = [];
 
         this.add(new LinkEntry(["c"], "Orthodox Christianity", "https://www.reddit.com/r/OrthodoxChristianity/", LinkCategories.REDDIT));
-        this.add(new LinkEntry(["j"], "Jung", "https://www.reddit.com/r/Jung/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["j"], "Carl Gustav Jung", "https://www.reddit.com/r/CarlGustavJung/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["f"], "Marie-Louise von Franz", "https://www.reddit.com/r/VonFranz/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["k"], "Demon Slayer", "https://www.reddit.com/r/KimetsuNoYaiba/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["l"], "Linux", "https://www.reddit.com/r/Linux/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["u"], "Unix Porn", "https://www.reddit.com/r/UnixPorn/", LinkCategories.REDDIT));
