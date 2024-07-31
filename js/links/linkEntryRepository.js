@@ -114,12 +114,13 @@ class LinkEntryRepository {
     #fillCognitromLinks() {
         this.entries[LinkCategories.COGNITROM] = [];
 
-        this.add(new LinkEntry(["c", "o", "g"], "Drive Home", "https://drive.google.com/u/1", LinkCategories.COGNITROM));
+        this.add(new LinkEntry(["c", "o", "g"], "Drive", "https://drive.google.com/u/1", LinkCategories.COGNITROM));
     }
 
     #fillSapientiaSalomonisLinks() {
         this.entries[LinkCategories.SAPIENTIA_SALOMONIS] = [];
 
-        this.add(new LinkEntry(["s"], "Drive Home", "https://drive.google.com/drive/u/0/folders/1-SAgdH6eBOw4ZNEXjfYSDd_EBAuhxVoX", LinkCategories.SAPIENTIA_SALOMONIS));
+        this.add(new LinkEntry(["h"], "Home", "https://sapientia-salomonis.com/", LinkCategories.SAPIENTIA_SALOMONIS));
+        this.add(new LinkEntry(["s"], "Drive", "https://drive.google.com/drive/u/0/folders/1-SAgdH6eBOw4ZNEXjfYSDd_EBAuhxVoX", LinkCategories.SAPIENTIA_SALOMONIS));
     }
 }
