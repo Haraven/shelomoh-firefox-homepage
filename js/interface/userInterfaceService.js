@@ -27,6 +27,10 @@ class UserInterfaceService {
                 return this.uiElements.cognitromContainer;
             case LinkCategories.SAPIENTIA_SALOMONIS:
                 return this.uiElements.sapientiaSalomonisContainer;
+            case LinkCategories.SOCIAL_MEDIA:
+                return this.uiElements.socialMediaContainer;
+            case LinkCategories.UTILITIES:
+                return this.uiElements.utilitiesContainer;
             default:
                 return null;
         }

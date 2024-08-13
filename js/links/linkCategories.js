@@ -8,4 +8,6 @@ const LinkCategories = {
     YOUTUBE: "youtube",
     COGNITROM: "cognitrom",
     SAPIENTIA_SALOMONIS: "sapientia_salomonis",
+    SOCIAL_MEDIA: "social_media",
+    UTILITIES: "utilities",
 }

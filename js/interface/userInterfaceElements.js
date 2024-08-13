@@ -40,6 +40,14 @@ class UserInterfaceElements {
      * @type {HTMLTableCellElement}
      */
     #sapientiaSalomonisLinksColumn;
+    /**
+     * @type {HTMLTableCellElement}
+     */
+    #socialMediaLinksColumn;
+    /**
+     * @type {HTMLTableCellElement}
+     */
+    #utilitiesLinksColumn;
 
     /**
      * @type {HTMLDivElement}
@@ -65,6 +73,14 @@ class UserInterfaceElements {
      * @type {HTMLDivElement}
      */
     #sapientiaSalomonisContainer;
+    /**
+     * @type {HTMLDivElement}
+     */
+    #socialMediaContainer;
+    /**
+     * @type {HTMLDivElement}
+     */
+    #utilitiesContainer;
 
     get linksTable() {
         if (!this.#linksTable) {
@@ -136,6 +152,20 @@ class UserInterfaceElements {
         return this.#sapientiaSalomonisLinksColumn;
     }
 
+    get socialMediaLinksColumn() {
+        if (!this.#socialMediaLinksColumn) {
+            this.#socialMediaLinksColumn = document.getElementById("social-media-links-column");
+        }
+        return this.#socialMediaLinksColumn;
+    }
+
+    get utilitiesLinksColumn() {
+        if (!this.#utilitiesLinksColumn) {
+            this.#utilitiesLinksColumn = document.getElementById("utilities-links-column");
+        }
+        return this.#utilitiesLinksColumn;
+    }
+
     get redditContainer() {
         if (!this.#redditContainer) {
             this.#redditContainer = document.getElementById("reddit-container");
@@ -176,5 +206,19 @@ class UserInterfaceElements {
             this.#sapientiaSalomonisContainer = document.getElementById("sapientia-salomonis-container");
         }
         return this.#sapientiaSalomonisContainer;
+    }
+
+    get socialMediaContainer() {
+        if (!this.#socialMediaContainer) {
+            this.#socialMediaContainer = document.getElementById("social-media-container");
+        }
+        return this.#socialMediaContainer;
+    }
+
+    get utilitiesContainer() {
+        if (!this.#utilitiesContainer) {
+            this.#utilitiesContainer = document.getElementById("utilities-container");
+        }
+        return this.#utilitiesContainer;
     }
 }

@@ -7,6 +7,7 @@ var Services = {
 }
 
 function init() {
+    try {
     let allLinks = Services.links.getAll();
 
     for (let link of allLinks) {
@@ -21,6 +22,9 @@ function init() {
         } catch (error) {
             console.error(`Error adding link ${link.url} to the user interface: ${error}`);
         }
+        }
+    } catch (error) {
+        console.error(`Error initializing the user interface: ${error}`);
     }
 }
 

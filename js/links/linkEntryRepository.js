@@ -20,6 +20,8 @@ class LinkEntryRepository {
         this.fillCategory(LinkCategories.GITLAB);
         this.fillCategory(LinkCategories.COGNITROM);
         this.fillCategory(LinkCategories.SAPIENTIA_SALOMONIS);
+        this.fillCategory(LinkCategories.SOCIAL_MEDIA);
+        this.fillCategory(LinkCategories.UTILITIES);
     }
 
     /**
@@ -72,7 +74,26 @@ class LinkEntryRepository {
             case LinkCategories.SAPIENTIA_SALOMONIS:
                 this.#fillSapientiaSalomonisLinks();
                 break;
+            case LinkCategories.SOCIAL_MEDIA:
+                this.#fillSocialMediaLinks();
+                break;
+            case LinkCategories.UTILITIES:
+                this.#fillUtilitiesLinks();
+                break;
         }
+    }
+
+    #fillSocialMediaLinks() {
+        this.entries[LinkCategories.SOCIAL_MEDIA] = [];
+
+        this.add(new LinkEntry(["f"], "Facebook", "https://www.facebook.com/", LinkCategories.SOCIAL_MEDIA));
+        this.add(new LinkEntry(["l", "i"], "LinkedIn", "https://www.linkedin.com/", LinkCategories.SOCIAL_MEDIA));
+    }
+
+    #fillUtilitiesLinks() {
+        this.entries[LinkCategories.UTILITIES] = [];   
+
+        this.add(new LinkEntry(["b"], "Bible Gateway", "https://www.biblegateway.com/", LinkCategories.UTILITIES));
     }
 
     #fillRedditLinks() {
@@ -80,7 +101,10 @@ class LinkEntryRepository {
 
         this.add(new LinkEntry(["c"], "Orthodox Christianity", "https://www.reddit.com/r/OrthodoxChristianity/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["j"], "Carl Gustav Jung", "https://www.reddit.com/r/CarlGustavJung/", LinkCategories.REDDIT));
-        this.add(new LinkEntry(["f"], "Marie-Louise von Franz", "https://www.reddit.com/r/VonFranz/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["v", "f"], "Marie-Louise von Franz", "https://www.reddit.com/r/VonFranz/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["h", "b", "b"], "Humans Being Bros", "https://www.reddit.com/r/HumansBeingBros/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["w", "g", "t"], "Wholesome Greentext", "https://www.reddit.com/r/WholesomeGreentext/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["a", "s", "k"], "AskReddit", "https://www.reddit.com/r/AskReddit/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["k"], "Demon Slayer", "https://www.reddit.com/r/KimetsuNoYaiba/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["l"], "Linux", "https://www.reddit.com/r/Linux/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["u"], "Unix Porn", "https://www.reddit.com/r/UnixPorn/", LinkCategories.REDDIT));
@@ -102,6 +126,7 @@ class LinkEntryRepository {
     #fillGithubLinks() {
         this.entries[LinkCategories.GITHUB] = [];
 
+        this.add(new LinkEntry(["g", "h"], "Home", "https://github.com/", LinkCategories.GITHUB));
         this.add(new LinkEntry(["c", "t", "s"], "Cts", "https://github.com/cognitrom/cognitrom.test.scorer", LinkCategories.GITHUB));
     }
 
