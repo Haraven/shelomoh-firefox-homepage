@@ -103,12 +103,11 @@ class LinkEntryRepository {
         this.add(new LinkEntry(["j"], "Carl Gustav Jung", "https://www.reddit.com/r/CarlGustavJung/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["v", "f"], "Marie-Louise von Franz", "https://www.reddit.com/r/VonFranz/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["h", "b", "b"], "Humans Being Bros", "https://www.reddit.com/r/HumansBeingBros/", LinkCategories.REDDIT));
-        this.add(new LinkEntry(["w", "g", "t"], "Wholesome Greentext", "https://www.reddit.com/r/WholesomeGreentext/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["a", "s", "k"], "AskReddit", "https://www.reddit.com/r/AskReddit/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["k"], "Demon Slayer", "https://www.reddit.com/r/KimetsuNoYaiba/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["l"], "Linux", "https://www.reddit.com/r/Linux/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["u"], "Unix Porn", "https://www.reddit.com/r/UnixPorn/", LinkCategories.REDDIT));
-        this.add(new LinkEntry(["o"], "OpenSUSE", "https://www.reddit.com/r/OpenSUSE/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["o"], "Arch Linux", "https://www.reddit.com/r/archlinux/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["p"], "Pop!_OS", "https://www.reddit.com/r/Pop_OS/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["k", "d", "e"], "KDE", "https://www.reddit.com/r/KDE/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["s", "d"], "Steam Deck", "https://www.reddit.com/r/SteamDeck/", LinkCategories.REDDIT));
@@ -128,6 +127,7 @@ class LinkEntryRepository {
 
         this.add(new LinkEntry(["g", "h"], "Home", "https://github.com/", LinkCategories.GITHUB));
         this.add(new LinkEntry(["c", "t", "s"], "Cts", "https://github.com/cognitrom/cognitrom.test.scorer", LinkCategories.GITHUB));
+        this.add(new LinkEntry(["c", "t", "r"], "Ctr", "https://github.com/cognitrom/cognitrom.test.reporter", LinkCategories.GITHUB));
     }
 
     #fillGitlabLinks() {
