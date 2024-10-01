@@ -107,7 +107,7 @@ class LinkEntryRepository {
         this.add(new LinkEntry(["k"], "Demon Slayer", "https://www.reddit.com/r/KimetsuNoYaiba/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["l"], "Linux", "https://www.reddit.com/r/Linux/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["u"], "Unix Porn", "https://www.reddit.com/r/UnixPorn/", LinkCategories.REDDIT));
-        this.add(new LinkEntry(["o"], "Arch Linux", "https://www.reddit.com/r/archlinux/", LinkCategories.REDDIT));
+        this.add(new LinkEntry(["a"], "Arch Linux", "https://www.reddit.com/r/archlinux/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["p"], "Pop!_OS", "https://www.reddit.com/r/Pop_OS/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["k", "d", "e"], "KDE", "https://www.reddit.com/r/KDE/", LinkCategories.REDDIT));
         this.add(new LinkEntry(["s", "d"], "Steam Deck", "https://www.reddit.com/r/SteamDeck/", LinkCategories.REDDIT));
