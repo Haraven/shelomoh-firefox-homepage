@@ -94,6 +94,7 @@ class LinkEntryRepository {
         this.entries[LinkCategories.UTILITIES] = [];   
 
         this.add(new LinkEntry(["b"], "Bible Gateway", "https://www.biblegateway.com/", LinkCategories.UTILITIES));
+        this.add(new LinkEntry(["n"], "Netflix", "https://www.netflix.com/", LinkCategories.UTILITIES));
     }
 
     #fillRedditLinks() {
